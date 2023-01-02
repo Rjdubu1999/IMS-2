@@ -8,27 +8,36 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import localhost.c482.Main;
+import model.Inventory;
+import model.Part;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static javafx.fxml.FXMLLoader.load;
+
+
+
 
 public class MainScreenController implements Initializable {
     @FXML
     private Button MainScreenExit;
     @FXML
-    public TableView MainPartsTable;
+    public TableView<Part> MainPartsTable;
     @FXML
-    public TableColumn MainPartsIDColumn;
+    public TableColumn<Part, Integer> MainPartsIDColumn;
     @FXML
-    public TableColumn MainPartsNameColumn;
+    public TableColumn<Part, String> MainPartsNameColumn;
     @FXML
-    public TableColumn MainPartsInventoryColumn;
+    public TableColumn<Part, Integer> MainPartsInventoryColumn;
     @FXML
-    public TableColumn MainPartsPriceColumn;
+    public TableColumn<Part, Double> MainPartsPriceColumn;
     @FXML
     public TextField MainPartsTextField;
     @FXML
@@ -47,32 +56,43 @@ public class MainScreenController implements Initializable {
     public Button AddPartScreen;
     @FXML
     public Button MainScreenAddPartButton;
-
+    Stage stage;
+    Parent scene;
     @FXML
     private Label welcomeText;
 
-
-
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
     @FXML
-    public void ModifyPartScreen(ActionEvent event) {
+    public void ModifyPartScreen(ActionEvent event) throws IOException {
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Main.class.getResource("ModifyPart.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
-
 
     @FXML
     public void OnActionDeletePart(ActionEvent event) {
     }
-
+    //runtime error here for changing FXMLLoader
     public void OnClickAddPart(ActionEvent event) throws IOException {
-        Parent addParts = FXMLLoader.load(getClass().getClassLoader().getResource("localhost.c482/AddPart.fxml"));
-        Scene scene = new Scene(addParts);
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Main.class.getResource("AddPart.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
+    public void onActionExitApplication(ActionEvent event) throws IOException{
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to exit Inventory Management System?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK);
+        System.exit(0);
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+    MainPartsTable.setItems(Inventory.getAllParts());
+
+
+
+    }
+
+
+
 }

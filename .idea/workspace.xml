@@ -4,31 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d877b3-16dc-4004-b38c-32d51abfce3b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/AddPart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/MainScreenController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/ModifyPart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/localhost/c482/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/InHouse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/Inventory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/Outsourced.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/Part.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/model/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/localhost/c482/AddPart.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/localhost/c482/Main.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/localhost/c482/ModifyPart.fxml" afterDir="false" />
+    <list default="true" id="11d877b3-16dc-4004-b38c-32d51abfce3b" name="Changes" comment="Backing up, redoing models, trying to fix nullpointer error with views">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AddPart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AddPart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ModifyPart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ModifyPart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/localhost/c482/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/localhost/c482/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/localhost/c482/AddPart.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/localhost/c482/AddPart.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/localhost/c482/Main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/localhost/c482/Main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/localhost/c482/ModifyPart.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/localhost/c482/ModifyPart.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +22,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -68,13 +52,17 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/Ryan Wilkinson/IdeaProjects/C482.12_30_22/src/main/java/localhost/c482&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Ryan Wilkinson\IdeaProjects\C482.12_30_22\src\main\resources\localhost\c482" />
+      <recent name="C:\Users\Ryan Wilkinson\IdeaProjects\C482.12_30_22\src\main\java\Views" />
+      <recent name="C:\Users\Ryan Wilkinson\IdeaProjects\C482.12_30_22\src\main\java\controller" />
+      <recent name="C:\Users\Ryan Wilkinson\IdeaProjects\C482.12_30_22\src\main\java\localhost\c482" />
       <recent name="C:\Users\Ryan Wilkinson\IdeaProjects\C482.12_30_22\src\main\java" />
-      <recent name="C:\Users\Ryan Wilkinson\IdeaProjects\C482.12_30_22\src\view" />
     </key>
   </component>
   <component name="RunManager">
@@ -108,7 +96,19 @@
       <option name="presentableId" value="Default" />
       <updated>1672461757970</updated>
     </task>
+    <task id="LOCAL-00001" summary="Backing up, redoing models, trying to fix nullpointer error with views">
+      <created>1672551719331</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1672551719331</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Backing up, redoing models, trying to fix nullpointer error with views" />
+    <option name="LAST_COMMIT_MESSAGE" value="Backing up, redoing models, trying to fix nullpointer error with views" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

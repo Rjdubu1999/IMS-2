@@ -10,7 +10,7 @@
             <font>
                 <Font name="System Bold Italic" size="22.0" />
             </font></Label>
-        <Button fx:id="MainScreenExit" layoutX="925.0" layoutY="450.0" mnemonicParsing="false" text="Exit" />
+        <Button fx:id="MainScreenExit" layoutX="925.0" layoutY="450.0" mnemonicParsing="false" onAction="#onActionExitApplication" text="Exit" />
         <AnchorPane layoutY="50.0" prefHeight="400.0" prefWidth="400.0">
             <children>
                 <TableView fx:id="MainPartsTable" layoutX="25.0" layoutY="50.0" prefHeight="250.0" prefWidth="400.0">
