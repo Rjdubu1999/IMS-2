@@ -60,6 +60,7 @@ public class ModifyPart implements Initializable {
     }
     @FXML
     public void ModifyPartSaveButton(ActionEvent event) throws IOException{
+
         try{
             int id = Integer.parseInt(ModifyPartIDLabel.getText());
             String name = ModifyPartNameTextField.getText();
@@ -88,10 +89,10 @@ public class ModifyPart implements Initializable {
             else {
                 if(ModifyInHouse.isSelected()){
                     int machineID = Integer.parseInt(ModifyPartMachineIDTextField.getText());
-                    Inventory.addPart(new InHouse(id, name,price, stock,min,max,machineID));
+                    Inventory.addPart(new InHouse());
                 } else if (ModifyOutsourced.isSelected()) {
                     String companyName = ModifyPartMachineIDTextField.getText();
-                    Inventory.addPart(new Outsourced(id, name, price, stock, min ,max, companyName));
+                    Inventory.addPart(new Outsourced());
                 }
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = FXMLLoader.load(Main.class.getResource("Main.fxml"));
@@ -145,3 +146,4 @@ public class ModifyPart implements Initializable {
 
     }
 }
+

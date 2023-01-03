@@ -13,9 +13,11 @@ import localhost.c482.Main;
 import model.InHouse;
 import model.Inventory;
 import model.Outsourced;
+import model.Part;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -53,7 +55,8 @@ public class AddPart implements Initializable {
         id++;
         return id;
     }
-
+    private String exceptionMessage = new String();
+    private boolean isOutsourced;
 
     // This method make the cancel button when clicked bring the user back to
     // the main screen and erases the data they've input.
@@ -86,47 +89,56 @@ public class AddPart implements Initializable {
 
 
     public void addPartsSaveButton(ActionEvent event) throws IOException{
-        try{
-            int id = Integer.parseInt(AddPartIDTextField.getText());
             String name = AddPartNameTextField.getText();
-            int stock = Integer.parseInt(AddPartInventoryTextField.getText());
-            double price = Double.parseDouble(AddPartInventoryTextField.getText());
-            int min = Integer.parseInt(AddPartMinTextField.getText());
-            int max = Integer.parseInt(AddPartMaxTextField.getText());
+            String stock = AddPartInventoryTextField.getText();
+            String price = AddPartPriceTextField.getText();
+            String min = AddPartMinTextField.getText();
+            String max = AddPartMaxTextField.getText();
+            String machineID = AddPartMachineIDTextField.getText();
 
-            if( min > max){
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Warning!");
-                alert.setContentText("Minimum can not be greater than maximum, must be less than or equal to.");
-                alert.showAndWait();
-            } else if ( stock > max || stock < min) {
-                Alert alert = new Alert (Alert.AlertType.WARNING);
-                alert.setTitle("Warning!");
-                alert.setContentText("Stock can not be greater than maximum or less than minimum.");
-                alert.showAndWait();
+            try{
+                exceptionMessage = Part.partValidator(name, Integer.parseInt(min), Integer.parseInt(max), Integer.parseInt(stock), Double.parseDouble(price), exceptionMessage);
+                if(exceptionMessage.length() > 0){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Error Adding Part");
+                    alert.setHeaderText("Error");
+                    alert.setContentText(exceptionMessage);
+                    alert.showAndWait();
+                    exceptionMessage = "";
+                }else {
+                    if (isOutsourced == false) {
+                        InHouse inhousePart = new InHouse();
 
-            } else if (name.isEmpty()) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Warning!");
-                alert.setContentText("Name field is blank.");
-                alert.showAndWait();
-            }
-            else {
-                if(AddPartInHouseRadio.isSelected()){
-                    int machineID = Integer.parseInt(AddPartMachineIDTextField.getText());
-                    Inventory.addPart(new InHouse(id, name,price, stock,min,max,machineID));
-                } else if (AddPartOutsourcedRadio.isSelected()) {
-                    String companyName = AddPartMachineIDTextField.getText();
-                    Inventory.addPart(new Outsourced(id, name, price, stock, min ,max, companyName));
+                        inhousePart.setId(getPartIDCount());
+                        inhousePart.setName(name);
+                        inhousePart.setPrice(Double.parseDouble(price));
+                        inhousePart.setStock(Integer.parseInt(stock));
+                        inhousePart.setMin(Integer.parseInt(min));
+                        inhousePart.setMax(Integer.parseInt(max));
+                        inhousePart.setMachineId(Integer.parseInt(machineID));
+                        Inventory.addPart(inhousePart);
                     }
-                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                scene = FXMLLoader.load(Main.class.getResource("Main.fxml"));
-                stage.setScene(new Scene(scene));
-                stage.show();
-            }
+                    else {
+                        Outsourced outsourcedPart = new Outsourced();
+                        outsourcedPart.setId(getPartIDCount());
+                        outsourcedPart.setName(name);
+                        outsourcedPart.setStock(Integer.parseInt(stock));
+                        outsourcedPart.setMin(Integer.parseInt(min));
+                        outsourcedPart.setMax(Integer.parseInt(max));
+                        outsourcedPart.setPrice(Double.parseDouble(price));
+                        Inventory.addPart(outsourcedPart);
+                    }
+                    Parent savePart = FXMLLoader.load(Main.class.getResource("Main.fxml"));
+                    Scene scene = new Scene(savePart);
+                    Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                    window.setScene(scene);
+                    window.show();
+
+                }
+
             }
         catch(NumberFormatException e){
-            //Alert alert = new Alert(Alert.AlertType.WARNING);
+           // Alert alert = new Alert(Alert.AlertType.INFORMATION);
            // alert.setTitle("Warning!");
            // alert.setContentText("Blank Fields. Please Complete all fields.");
            // alert.showAndWait();

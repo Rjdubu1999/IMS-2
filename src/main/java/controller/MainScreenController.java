@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,7 +9,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 import localhost.c482.Main;
 import model.Inventory;
@@ -58,6 +60,9 @@ public class MainScreenController implements Initializable {
     public Button MainScreenAddPartButton;
     Stage stage;
     Parent scene;
+    public MainScreenController(){
+
+    }
     @FXML
     private Label welcomeText;
 
@@ -87,12 +92,18 @@ public class MainScreenController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-    MainPartsTable.setItems(Inventory.getAllParts());
 
 
-
+    MainPartsIDColumn.setCellValueFactory(cellData -> cellData.getValue().partIDProperty().asObject());
+    MainPartsNameColumn.setCellValueFactory(cellData -> cellData.getValue().partNameProperty());
+    MainPartsInventoryColumn.setCellValueFactory(cellData -> cellData.getValue().partStockProperty().asObject());
+    MainPartsPriceColumn.setCellValueFactory(cellData -> cellData.getValue().partPriceProperty().asObject());
+    updatePartTableViw();
     }
 
+    public void updatePartTableViw(){
+        MainPartsTable.setItems(Inventory.getAllParts());
+    }
 
 
 }

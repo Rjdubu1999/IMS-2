@@ -1,18 +1,21 @@
 package model;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 public class InHouse extends Part{
-    private int machineId;
-    public InHouse(int id, String name, double price, int stock, int min ,int max, int machineId){
-        super(id, name, price, stock, min,max);
-        this.machineId = machineId;
+    private final IntegerProperty machineId;
+    public InHouse(){
+        super();
+        machineId = new SimpleIntegerProperty();
     }
 
     public int getMachineId(){
-        return machineId;
+        return this.machineId.get();
     }
 
     public void setMachineId(int machineId){
-        this.machineId = machineId;
+        this.machineId.set(machineId);
     }
 
 }

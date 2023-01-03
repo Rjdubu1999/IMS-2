@@ -9,6 +9,8 @@ public class Inventory{
     //The Inventory class holds all the products and parts and
     // the methods need to search, add, update and delete parts
     // and products.
+public Inventory(){
+}
 
     private static final ObservableList<Part> allParts = FXCollections.observableArrayList();
     private static final ObservableList<Product> allProducts = FXCollections.observableArrayList();
