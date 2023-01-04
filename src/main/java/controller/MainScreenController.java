@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import localhost.c482.Main;
 import model.Inventory;
 import model.Part;
+import model.Product;
 
 import java.io.IOException;
 import java.net.URL;
@@ -43,15 +44,15 @@ public class MainScreenController implements Initializable {
     @FXML
     public TextField MainPartsTextField;
     @FXML
-    public TableView MainProductTable;
+    public TableView<Product> MainProductTable;
     @FXML
-    public TableColumn MainProductIDColumn;
+    public TableColumn<Product, Integer> MainProductIDColumn;
     @FXML
-    public TableColumn MainProductNameColumn;
+    public TableColumn<Product, String> MainProductNameColumn;
     @FXML
-    public TableColumn MainProductInventoryColumn;
+    public TableColumn<Product, Integer> MainProductInventoryColumn;
     @FXML
-    public TableColumn MainProductPriceColumn;
+    public TableColumn<Product, Double> MainProductPriceColumn;
     @FXML
     public TextField MainProductTextField;
     @FXML
@@ -63,11 +64,16 @@ public class MainScreenController implements Initializable {
     public MainScreenController(){
 
     }
-    @FXML
-    private Label welcomeText;
+    public static int partToModifyIndex(){
+        return modifyPartIndex ;
+    }
+    private static Part modifySelected;
+    private static int modifyPartIndex;
 
     @FXML
     public void ModifyPartScreen(ActionEvent event) throws IOException {
+        modifySelected = MainPartsTable.getSelectionModel().getSelectedItem();
+        modifyPartIndex = Inventory.getAllParts().indexOf(modifySelected);
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(Main.class.getResource("ModifyPart.fxml"));
         stage.setScene(new Scene(scene));
@@ -90,6 +96,13 @@ public class MainScreenController implements Initializable {
         if(result.isPresent() && result.get() == ButtonType.OK);
         System.exit(0);
     }
+    public void onClickAddProduct(ActionEvent event)  throws  IOException{
+        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(Main.class.getResource("AddProduct.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
+
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -98,12 +111,20 @@ public class MainScreenController implements Initializable {
     MainPartsNameColumn.setCellValueFactory(cellData -> cellData.getValue().partNameProperty());
     MainPartsInventoryColumn.setCellValueFactory(cellData -> cellData.getValue().partStockProperty().asObject());
     MainPartsPriceColumn.setCellValueFactory(cellData -> cellData.getValue().partPriceProperty().asObject());
-    updatePartTableViw();
+    updatePartTableView();
+
+    MainProductIDColumn.setCellValueFactory(cellData -> cellData.getValue().productIDProperty().asObject());
+    MainProductNameColumn.setCellValueFactory(cellData -> cellData.getValue().productNameProperty());
+    MainProductInventoryColumn.setCellValueFactory(cellData -> cellData.getValue().productInventoryProperty().asObject());
+    MainProductPriceColumn.setCellValueFactory(cellData -> cellData.getValue().productPriceProperty().asObject());
+    updateProductTableView();
     }
 
-    public void updatePartTableViw(){
+    public void updatePartTableView(){
         MainPartsTable.setItems(Inventory.getAllParts());
     }
-
+    public void updateProductTableView(){
+        MainProductTable.setItems(Inventory.getAllProducts());
+    }
 
 }

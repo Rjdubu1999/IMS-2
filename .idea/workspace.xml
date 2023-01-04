@@ -7,17 +7,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d877b3-16dc-4004-b38c-32d51abfce3b" name="Changes" comment="got addpart screen to begin working. &#10;When adding information to it, im thrown a runtime exception. &#10;Will try and troubleshoot this, but want to backup">
+    <list default="true" id="11d877b3-16dc-4004-b38c-32d51abfce3b" name="Changes" comment="Data from AddPart now loads into main table view, thankfully. Was having an issue chasing down problem where the price column was not returning a proper double value which was typed. The issue was in the gettext of AddPart Controller where I accidentally used the get inventory rather than price.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/AddProduct.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/localhost/c482/AddProduct.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/AddPart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AddPart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainScreenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/ModifyPart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ModifyPart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/localhost/c482/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/localhost/c482/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/InHouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/InHouse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Inventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Outsourced.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Outsourced.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Part.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Part.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/localhost/c482/Main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/localhost/c482/Main.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +26,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -118,13 +117,21 @@
       <option name="project" value="LOCAL" />
       <updated>1672672155971</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Data from AddPart now loads into main table view, thankfully. Was having an issue chasing down problem where the price column was not returning a proper double value which was typed. The issue was in the gettext of AddPart Controller where I accidentally used the get inventory rather than price.">
+      <created>1672774881726</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1672774881726</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Backing up, redoing models, trying to fix nullpointer error with views" />
     <MESSAGE value="got addpart screen to begin working. &#10;When adding information to it, im thrown a runtime exception. &#10;Will try and troubleshoot this, but want to backup" />
-    <option name="LAST_COMMIT_MESSAGE" value="got addpart screen to begin working. &#10;When adding information to it, im thrown a runtime exception. &#10;Will try and troubleshoot this, but want to backup" />
+    <MESSAGE value="Data from AddPart now loads into main table view, thankfully. Was having an issue chasing down problem where the price column was not returning a proper double value which was typed. The issue was in the gettext of AddPart Controller where I accidentally used the get inventory rather than price." />
+    <option name="LAST_COMMIT_MESSAGE" value="Data from AddPart now loads into main table view, thankfully. Was having an issue chasing down problem where the price column was not returning a proper double value which was typed. The issue was in the gettext of AddPart Controller where I accidentally used the get inventory rather than price." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

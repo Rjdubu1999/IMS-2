@@ -73,14 +73,9 @@ public Inventory(){
     }
 
     public static void updatePart(int id, Part selectedPart){
-        int index = -1;
-        for(Part part : getAllParts()){
-            index++;
-            if(part.getId() == id){
-                getAllParts().set(index,selectedPart);
-            }
-        }
+        allParts.set(id, selectedPart);
     }
+
 
     public static void updateProduct(int id, Product selectedProduct){
         int index = -1;

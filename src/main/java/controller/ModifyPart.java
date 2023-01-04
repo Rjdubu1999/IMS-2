@@ -20,6 +20,9 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+
+import static controller.MainScreenController.partToModifyIndex;
+
 public class ModifyPart implements Initializable {
     @FXML
     public Label changingLabel;
@@ -43,6 +46,12 @@ public class ModifyPart implements Initializable {
     public RadioButton ModifyOutsourced;
     @FXML private Label ModifyPartIDLabel;
 
+
+    private boolean isOutsourced;
+    int partIndex = partToModifyIndex();
+    private String exceptionMessage = new String();
+    private int id;
+
     Stage stage;
     Parent scene;
     @FXML
@@ -60,44 +69,50 @@ public class ModifyPart implements Initializable {
     }
     @FXML
     public void ModifyPartSaveButton(ActionEvent event) throws IOException{
+        String name = ModifyPartNameTextField.getText();
+        String stock = ModifyPartInventoryTextField.getText();
+        String price = ModifyPartPriceTextField.getText();
+        String min = ModifyPartMinTextField.getText();
+        String max = ModifyPartMaxTextField.getText();
+        String machineID = ModifyPartMachineIDTextField.getText();
 
         try{
-            int id = Integer.parseInt(ModifyPartIDLabel.getText());
-            String name = ModifyPartNameTextField.getText();
-            int stock = Integer.parseInt(ModifyPartInventoryTextField.getText());
-            double price = Double.parseDouble(ModifyPartInventoryTextField.getText());
-            int min = Integer.parseInt(ModifyPartMinTextField.getText());
-            int max = Integer.parseInt(ModifyPartMaxTextField.getText());
+            exceptionMessage = Part.partValidator(name, Integer.parseInt(min), Integer.parseInt(max), Integer.parseInt(stock), Double.parseDouble(price), exceptionMessage);
+            if(exceptionMessage.length() > 0){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error Adding Part");
+                alert.setHeaderText("Error");
+                alert.setContentText(exceptionMessage);
+                alert.showAndWait();
+            }else {
+                if (isOutsourced == false) {
+                    InHouse iHPart = new InHouse();
 
-            if( min > max){
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Warning!");
-                alert.setContentText("Minimum can not be greater than maximum, must be less than or equal to.");
-                alert.showAndWait();
-            } else if ( stock > max || stock < min) {
-                Alert alert = new Alert (Alert.AlertType.WARNING);
-                alert.setTitle("Warning!");
-                alert.setContentText("Stock can not be greater than maximum or less than minimum.");
-                alert.showAndWait();
-
-            } else if (name.isEmpty()) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Warning!");
-                alert.setContentText("Name field is blank.");
-                alert.showAndWait();
-            }
-            else {
-                if(ModifyInHouse.isSelected()){
-                    int machineID = Integer.parseInt(ModifyPartMachineIDTextField.getText());
-                    Inventory.addPart(new InHouse());
-                } else if (ModifyOutsourced.isSelected()) {
-                    String companyName = ModifyPartMachineIDTextField.getText();
-                    Inventory.addPart(new Outsourced());
+                    iHPart.setId((id));
+                    iHPart.setName(name);
+                    iHPart.setPrice(Double.parseDouble(price));
+                    iHPart.setStock(Integer.parseInt(stock));
+                    iHPart.setMin(Integer.parseInt(min));
+                    iHPart.setMax(Integer.parseInt(max));
+                    iHPart.setMachineId(Integer.parseInt(machineID));
+                    Inventory.updatePart(partIndex, iHPart);
                 }
-                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                scene = FXMLLoader.load(Main.class.getResource("Main.fxml"));
-                stage.setScene(new Scene(scene));
-                stage.show();
+                else {
+                    Outsourced oPart = new Outsourced();
+                    oPart.setId((id));
+                    oPart.setName(name);
+                    oPart.setStock(Integer.parseInt(stock));
+                    oPart.setMin(Integer.parseInt(min));
+                    oPart.setMax(Integer.parseInt(max));
+                    oPart.setPrice(Double.parseDouble(price));
+                    Inventory.updatePart(partIndex, oPart);
+                }
+                Parent modifyPart = FXMLLoader.load(Main.class.getResource("Main.fxml"));
+                Scene scene = new Scene(modifyPart);
+                Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                window.setScene(scene);
+                window.show();
+
             }
         }
         catch(NumberFormatException e){
@@ -122,28 +137,30 @@ public class ModifyPart implements Initializable {
         }
     }
 
-    public void partToBeUpdated(Part part){
-        ModifyPartIDLabel.setText(String.valueOf(part.getId()));
-        ModifyPartNameTextField.setText(String.valueOf(part.getName()));
-        ModifyPartInventoryTextField.setText(String.valueOf(part.getName()));
-        ModifyPartPriceTextField.setText(String.valueOf(part.getPrice()));
-        ModifyPartMinTextField.setText(String.valueOf(part.getMin()));
-        ModifyPartMaxTextField.setText(String.valueOf(part.getMax()));
-
-        if(part instanceof InHouse){
-            ModifyInHouse.setSelected(true);
-            changingLabel.setText("Machine ID");
-            ModifyPartMachineIDTextField.setText(String.valueOf(((InHouse) part).getMachineId()));
-        }else {
-            ModifyOutsourced.setSelected(true);
-            changingLabel.setText("Company Name");
-            ModifyPartMachineIDTextField.setText(String.valueOf(((Outsourced)part).getCompanyName()));
-        }
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        Part part = Inventory.getAllParts().get(partIndex);
+        id = Inventory.getAllParts().get(partIndex).getId();
+        ModifyPartIDTextField.setText(String.valueOf(id));
+        ModifyPartIDTextField.setEditable(false);
+        ModifyPartNameTextField.setText(part.getName());
+        ModifyPartPriceTextField.setText(Double.toString(part.getPrice()));
+        ModifyPartMaxTextField.setText(Integer.toString(part.getMax()));
+        ModifyPartMinTextField.setText(Integer.toString(part.getMin()));
+        ModifyPartInventoryTextField.setText(Integer.toString(part.getStock()));
+
+        if(part instanceof InHouse){
+            ModifyPartMachineIDTextField.setText(Integer.toString(((InHouse)Inventory.getAllParts().get(partIndex)).getMachineId()));
+            changingLabel.setText("Machine ID");
+            ModifyInHouse.setSelected(true);
+        }
+        else{
+            ModifyPartMachineIDTextField.setText(((Outsourced)Inventory.getAllParts().get(partIndex)).getCompanyName());
+            changingLabel.setText("Company Name");
+            ModifyOutsourced.setSelected(true);
+        }
     }
 }
 

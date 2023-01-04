@@ -109,7 +109,7 @@ public class AddPart implements Initializable {
                     if (isOutsourced == false) {
                         InHouse inhousePart = new InHouse();
 
-                        inhousePart.setId(getPartIDCount());
+                        inhousePart.setId((id));
                         inhousePart.setName(name);
                         inhousePart.setPrice(Double.parseDouble(price));
                         inhousePart.setStock(Integer.parseInt(stock));
