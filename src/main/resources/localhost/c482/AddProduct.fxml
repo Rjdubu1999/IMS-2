@@ -27,6 +27,7 @@
     <Button layoutX="600.0" layoutY="450.0" mnemonicParsing="false" onAction="#OnActionSave" text="Save" />
     <Button layoutX="600.0" layoutY="410.0" mnemonicParsing="false" onAction="#OnActionRemoveAssociatedButton" text="Remove Associated Part" />
     <Button layoutX="690.0" layoutY="450.0" mnemonicParsing="false" onAction="#OnActionCancel" text="Cancel" />
+   <TextField fx:id="AddProductAddPartSearchField" layoutX="600.0" layoutY="12.0" onAction="#onActionSearchParts" onKeyTyped="#onKeyTypedSearch" prefWidth="200.0" promptText="Search Parts To Add to Product" />
     <TableView fx:id="AddProductAddPartTable" layoutX="450.0" layoutY="50.0" prefHeight="150.0" prefWidth="350.0">
         <columns>
             <TableColumn fx:id="AddProductAddPartIDColumn" prefWidth="49.0" text="ID" />

@@ -92,7 +92,7 @@ public abstract class Part {
         if(stock<1){
             error = error + ("Inventory can not be 0");
         }
-        if (price < 1){
+        if (price <= 0){
             error = error + ("Price can not be $0");
 
         }

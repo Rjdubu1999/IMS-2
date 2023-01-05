@@ -7,15 +7,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d877b3-16dc-4004-b38c-32d51abfce3b" name="Changes" comment="Data from AddPart now loads into main table view, thankfully. Was having an issue chasing down problem where the price column was not returning a proper double value which was typed. The issue was in the gettext of AddPart Controller where I accidentally used the get inventory rather than price.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/AddProduct.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/localhost/c482/AddProduct.fxml" afterDir="false" />
+    <list default="true" id="11d877b3-16dc-4004-b38c-32d51abfce3b" name="Changes" comment="Got the add and modify part screens working and able to load information into the main table on the main screen. Now working on getting the addProduct to upload it's information to the main screen, the error is coming from the product validator in the product class.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/ModifyProduct.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/localhost/c482/ModifyProduct.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/AddPart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AddPart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AddProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AddProduct.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainScreenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/ModifyPart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ModifyPart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/localhost/c482/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/localhost/c482/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Outsourced.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Outsourced.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Part.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Part.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/localhost/c482/AddProduct.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/localhost/c482/AddProduct.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/localhost/c482/Main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/localhost/c482/Main.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -124,14 +129,22 @@
       <option name="project" value="LOCAL" />
       <updated>1672774881726</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Got the add and modify part screens working and able to load information into the main table on the main screen. Now working on getting the addProduct to upload it's information to the main screen, the error is coming from the product validator in the product class.">
+      <created>1672814797887</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1672814797887</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Backing up, redoing models, trying to fix nullpointer error with views" />
     <MESSAGE value="got addpart screen to begin working. &#10;When adding information to it, im thrown a runtime exception. &#10;Will try and troubleshoot this, but want to backup" />
     <MESSAGE value="Data from AddPart now loads into main table view, thankfully. Was having an issue chasing down problem where the price column was not returning a proper double value which was typed. The issue was in the gettext of AddPart Controller where I accidentally used the get inventory rather than price." />
-    <option name="LAST_COMMIT_MESSAGE" value="Data from AddPart now loads into main table view, thankfully. Was having an issue chasing down problem where the price column was not returning a proper double value which was typed. The issue was in the gettext of AddPart Controller where I accidentally used the get inventory rather than price." />
+    <MESSAGE value="Got the add and modify part screens working and able to load information into the main table on the main screen. Now working on getting the addProduct to upload it's information to the main screen, the error is coming from the product validator in the product class." />
+    <option name="LAST_COMMIT_MESSAGE" value="Got the add and modify part screens working and able to load information into the main table on the main screen. Now working on getting the addProduct to upload it's information to the main screen, the error is coming from the product validator in the product class." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

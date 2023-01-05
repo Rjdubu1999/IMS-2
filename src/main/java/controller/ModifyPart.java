@@ -59,13 +59,14 @@ public class ModifyPart implements Initializable {
     public void ModifyPartInHouseButton(ActionEvent event) {
         changingLabel.setText("Machine ID");
         ModifyOutsourced.setSelected(false);
-
+        isOutsourced = false;
     }
 
     @FXML
     public void ModifyPartOutsourcedRadioButton(ActionEvent event) {
         changingLabel.setText("Company Name");
         ModifyInHouse.setSelected(false);
+        isOutsourced = true;
     }
     @FXML
     public void ModifyPartSaveButton(ActionEvent event) throws IOException{
@@ -98,14 +99,17 @@ public class ModifyPart implements Initializable {
                     Inventory.updatePart(partIndex, iHPart);
                 }
                 else {
-                    Outsourced oPart = new Outsourced();
-                    oPart.setId((id));
-                    oPart.setName(name);
-                    oPart.setStock(Integer.parseInt(stock));
-                    oPart.setMin(Integer.parseInt(min));
-                    oPart.setMax(Integer.parseInt(max));
-                    oPart.setPrice(Double.parseDouble(price));
-                    Inventory.updatePart(partIndex, oPart);
+                    if( isOutsourced == true) {
+                        Outsourced oPart = new Outsourced();
+                        oPart.setId(id);
+                        oPart.setName(name);
+                        oPart.setStock(Integer.parseInt(stock));
+                        oPart.setMin(Integer.parseInt(min));
+                        oPart.setMax(Integer.parseInt(max));
+                        oPart.setPrice(Double.parseDouble(price));
+                        oPart.setCompanyName(machineID);
+                        Inventory.updatePart(partIndex, oPart);
+                    }
                 }
                 Parent modifyPart = FXMLLoader.load(Main.class.getResource("Main.fxml"));
                 Scene scene = new Scene(modifyPart);

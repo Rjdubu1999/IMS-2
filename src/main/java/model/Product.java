@@ -12,7 +12,8 @@ public class Product {
     private final IntegerProperty stock;
     private final IntegerProperty min;
     private final IntegerProperty max;
-    private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
+    private static ObservableList<Part> associatedParts = FXCollections.observableArrayList();
+    private String machineID;
 
     public Product() {
         id = new SimpleIntegerProperty();
@@ -134,27 +135,28 @@ public class Product {
         partsSum = partsSum + associatedParts.get(i).getPrice();
         }
     if(name == null){
-        error = error + ("Blank name field.");
-    }  /**
-    if(min < 0 ){
-        error = error + ("Inventory can not be less than 0");
-    }  **/
-    if( min > max){
-        error = error + ("Min must be less than max");
+        error = error + "Blank name field.";
     }
-  //  if(stock < min || stock > max){
-    //    error = error + ("Inventory must be between min and max");
+    if(min < 0 ){
+        error = error + "Inventory can not be less than 0";
+    }
+    if( min > max){
+        error = error + "Min must be less than max";
+    }
+    if(stock < min || stock > max){
+        error = error + "Inventory must be between min and max";
+    }
+    if(price <= 0){
+        error = error + "Price must be greater than 0.00";
+    }
+   // if(associatedParts.size() < 1){
+    //    error = error + "Product must have 1 or more parts";
    // }
-    if(price < 0){
-        error = error + ("Price must be greater than 0.00");
-    } /**
-    if(associatedParts.size() < 1){
-        error = error + ("Product must have 1 or more parts");
-    } **/
     if(partsSum > price){
-        error = error + ("Product's price must be higher than the cost of all parts.");
+        error = error + "Product's price must be higher than the cost of all parts.";
     }
     return error;
     }
+
 
 }

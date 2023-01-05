@@ -17,7 +17,7 @@ import model.Part;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.DecimalFormat;
+
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -76,6 +76,7 @@ public class AddPart implements Initializable {
 //  Machine ID if user clicks the in house radio button.
     public void inHouseRadioButton(ActionEvent event) {
         changingLabel.setText("Machine ID");
+        isOutsourced = false;
         AddPartOutsourcedRadio.setSelected(false);
     }
 
@@ -84,7 +85,9 @@ public class AddPart implements Initializable {
 //  Company Name if user clicks the in outsourced radio button.
     public void addPartsOutsourcedRadioButton(ActionEvent event) {
         changingLabel.setText("Company Name");
+        isOutsourced = true;
         AddPartInHouseRadio.setSelected(false);
+
     }
 
 
@@ -106,10 +109,10 @@ public class AddPart implements Initializable {
                     alert.showAndWait();
                     exceptionMessage = "";
                 }else {
-                    if (isOutsourced == false) {
+                    if (!isOutsourced) {
                         InHouse inhousePart = new InHouse();
 
-                        inhousePart.setId((id));
+                        inhousePart.setId(id);
                         inhousePart.setName(name);
                         inhousePart.setPrice(Double.parseDouble(price));
                         inhousePart.setStock(Integer.parseInt(stock));
@@ -119,14 +122,18 @@ public class AddPart implements Initializable {
                         Inventory.addPart(inhousePart);
                     }
                     else {
-                        Outsourced outsourcedPart = new Outsourced();
-                        outsourcedPart.setId(getPartIDCount());
-                        outsourcedPart.setName(name);
-                        outsourcedPart.setStock(Integer.parseInt(stock));
-                        outsourcedPart.setMin(Integer.parseInt(min));
-                        outsourcedPart.setMax(Integer.parseInt(max));
-                        outsourcedPart.setPrice(Double.parseDouble(price));
-                        Inventory.addPart(outsourcedPart);
+                        if(isOutsourced == true) {
+
+                            Outsourced outsourcedPart = new Outsourced();
+                            outsourcedPart.setId(id);
+                            outsourcedPart.setName(name);
+                            outsourcedPart.setStock(Integer.parseInt(stock));
+                            outsourcedPart.setMin(Integer.parseInt(min));
+                            outsourcedPart.setMax(Integer.parseInt(max));
+                            outsourcedPart.setPrice(Double.parseDouble(price));
+                            outsourcedPart.setCompanyName(machineID);
+                            Inventory.addPart(outsourcedPart);
+                        }
                     }
                     Parent savePart = FXMLLoader.load(Main.class.getResource("Main.fxml"));
                     Scene scene = new Scene(savePart);
@@ -140,7 +147,7 @@ public class AddPart implements Initializable {
         catch(NumberFormatException e){
            // Alert alert = new Alert(Alert.AlertType.INFORMATION);
            // alert.setTitle("Warning!");
-           // alert.setContentText("Blank Fields. Please Complete all fields.");
+          //  alert.setContentText("Blank Fields. Please Complete all fields.");
            // alert.showAndWait();
 
             }
@@ -158,13 +165,6 @@ public class AddPart implements Initializable {
 
 
     }
-
-
-
-
-
-
-
 
 
 }

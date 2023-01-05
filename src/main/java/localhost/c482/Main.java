@@ -20,7 +20,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/localhost/c482/Main.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1800, 800);
+        Scene scene = new Scene(fxmlLoader.load(), 1000, 600);
         stage.setTitle("Ryan Wilkinson C482 Performance Assessment");
         stage.setScene(scene);
         stage.show();
